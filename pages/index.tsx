@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
+import Head from 'next/head';
 
 import { Input } from '@/components/index';
-import Head from 'next/head';
 
 const Home: NextPage = () => {
   return (
@@ -10,7 +10,7 @@ const Home: NextPage = () => {
         <title>Sign in | Classroom</title>
       </Head>
       <div className='container mx-auto flex justify-center items-center h-screen'>
-        <div className='border py-16 px-12 rounded-md'>
+        <div className='border py-16 px-12 rounded-md max-w-full md:max-w-none'>
           <h1 className='text-3xl text-center mb-6'>Classroom</h1>
           <h2 className='text-2xl text-center mb-16'>Sign in</h2>
           <form className='flex flex-col'>
