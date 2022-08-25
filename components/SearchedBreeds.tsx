@@ -10,8 +10,8 @@ const imgStyles = [
   'xs:h-[180px]',
   'sm:h-[120px]',
   'md:h-[160px]',
-  'xl:h-[280px]',
-  'xxl:h-[300px]',
+  'xl:h-[220px]',
+  '2xl:h-[280px]',
   'bg-center',
   'bg-no-repeat',
   'rounded-2xl',
@@ -29,7 +29,7 @@ export const SearchedBreeds = () => {
   const { data } = useQuery(['searched-breeds'], breeds.getSearches);
 
   return (
-    <div className="bg-stone-200 py-4 pb-10 md:pt-6 xl:pt-10 px-6 sm:px-8 md:px-10 lg:px-20 rounded-b-[36px]">
+    <div className="bg-stone-200 py-4 pb-10 md:pt-6 xl:pt-10 px-6 sm:px-8 md:px-12 lg:px-20 rounded-b-[36px]">
       <h2 className="text-xs md:text-md lg:text-lg mb-1 text-amber-900">Most searched breeds</h2>
       <div className="w-10 h-[2px] bg-amber-900"></div>
       <h2 className="mt-8 lg:mt-12 text-xl md:text-2xl lg:text-3xl xl:text-4xl text-amber-900 mb-6 lg:mb-8">

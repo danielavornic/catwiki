@@ -53,13 +53,15 @@ const listContainerStyles = [
   'absolute',
   'py-2',
   'px-2',
-  'md:py-5',
+  'lg:py-5',
   'md:px-2',
   'shadow-sm',
 ].join(' ');
 
 const listStyles = [
-  'max-h-[220px]',
+  'max-h-[120px]',
+  'sm:max-h-[130px]',
+  'lg:max-h-[220px]',
   'overflow-auto',
   'scrollbar-thin',
   'scrollbar-thumb-gray-400',
@@ -139,7 +141,7 @@ export const SearchInput = () => {
               data.map((breed: Breed) => (
                 <li
                   key={breed.id}
-                  className="py-2 md:py-3 px-1 md:px-2 cursor-pointer hover:bg-gray-50 rounded-md mr-3"
+                  className="py-2 lg:py-3 px-1 md:px-2 cursor-pointer hover:bg-gray-50 rounded-md mr-3"
                   onClick={() => setBreed(breed)}
                 >
                   {breed.name}
