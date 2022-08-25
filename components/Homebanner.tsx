@@ -1,4 +1,5 @@
 import { SearchInput } from './SearchInput';
+import { SearchedBreeds } from './SearchedBreeds';
 
 const imgBgStyles = [
   "bg-[url('/images/hero-image-sm.png')]",
@@ -52,6 +53,7 @@ export const Homebanner = () => {
           <SearchInput />
         </div>
       </div>
+      <SearchedBreeds />
     </div>
   );
 };
