@@ -10,7 +10,7 @@ const imgBgStyles = [
   'md:min-h-[420px]',
   'lg:min-h-[500px]',
   'xl:min-h-[600px]',
-  'rounded-t-[42px]',
+  'rounded-t-[36px]',
   'p-6',
   'sm:p-8',
   'md:p-12',
