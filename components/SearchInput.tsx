@@ -133,7 +133,7 @@ export const SearchInput = () => {
         </span>
       </div>
       {searchValue && (
-        <div className={listContainerStyles}>
+        <div className={listContainerStyles} data-testid="search-list">
           <ul className={listStyles}>
             {data?.length > 0 ? (
               data.map((breed: Breed) => (

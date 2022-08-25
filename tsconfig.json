@@ -23,7 +23,7 @@
       "@/utils/*": ["utils/*"],
       "@/hooks/*": ["hooks/*"],
       "@/context/*": ["context/*"],
-      "@/lib": ["lib/*"]
+      "@/lib/*": ["lib/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tailwind.config.js"],
