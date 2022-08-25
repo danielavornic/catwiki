@@ -1,9 +1,9 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import { breeds } from '@/pages/api/breeds';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { useQuery } from '@tanstack/react-query';
-import Link from 'next/link';
-import { Breed } from 'types/breeds';
+import { breeds } from '@/pages/api/breeds';
+import { Breed, BreedSearch } from '@/types/breeds';
 
 const groupStyles = [
   'bg-white',
@@ -58,9 +58,22 @@ const listContainerStyles = [
   'shadow-sm',
 ].join(' ');
 
+const listStyles = [
+  'max-h-[220px]',
+  'overflow-auto',
+  'scrollbar-thin',
+  'scrollbar-thumb-gray-400',
+  'scrollbar-track-gray-50',
+  'scrollbar-thumb-rounded-full',
+  'scrollbar-track-rounded-full',
+].join(' ');
+
 export const SearchInput = () => {
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
   const [searchValue, setSearchValue] = useState('');
-  const [windowWidth, setWindowWidth] = useState(1900);
+  const [breed, setBreed] = useState<Breed | null>(null);
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -68,33 +81,52 @@ export const SearchInput = () => {
     enabled: searchValue !== '',
   });
 
+  const { data: searches } = useQuery(['breed-searches'], breeds.getSearches);
+  const { mutate } = useMutation(breeds.registerSearches, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['breed-searches']);
+      router.push(`/breeds/${breed?.id}`);
+      setBreed(null);
+    },
+  });
+
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
+    if (breed) {
+      const existingBreed = searches?.find(({ id }) => id === breed.id);
+      const newSearches = existingBreed
+        ? searches?.map((b) => (b.id === breed.id ? { ...b, searches: b.searches + 1 } : b))
+        : [
+            ...(searches || []),
+            {
+              name: breed.name,
+              id: breed.id,
+              img: breed.reference_image_id,
+              searches: 1,
+            },
+          ];
+
+      mutate(newSearches as BreedSearch[]);
+    }
+  }, [breed]);
+
+  useEffect(() => {
     const handleClickOutside = (event: any) =>
       ref.current && !ref.current.contains(event.target) && setSearchValue('');
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
     document.addEventListener('click', handleClickOutside, true);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      document.removeEventListener('click', handleClickOutside, true);
-    };
+    return () => document.removeEventListener('click', handleClickOutside, true);
   }, []);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value);
 
   return (
     <div className="relative" ref={ref}>
       <div className={groupStyles}>
         <input
           type="text"
-          name="search"
-          placeholder={windowWidth > 640 ? 'Enter your breed' : 'Search'}
+          name="breed-search"
+          placeholder="Search"
           value={searchValue}
           className={inputStyles}
-          onChange={handleChange}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
         <span className="material-symbols-outlined text-black text-sm md:text-lg lg:text-xl">
           search
@@ -102,21 +134,20 @@ export const SearchInput = () => {
       </div>
       {searchValue && (
         <div className={listContainerStyles}>
-          <ul className="max-h-[220px] overflow-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-50 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+          <ul className={listStyles}>
             {data?.length > 0 ? (
-              data.map(({ id, name }: Breed) => (
+              data.map((breed: Breed) => (
                 <li
-                  key={id}
-                  className="py-2 md:py-3 last:pb-0 first:pt-0 px-1 md:px-2 cursor-pointer hover:bg-gray-50 rounded-md mr-3"
+                  key={breed.id}
+                  className="py-2 md:py-3 px-1 md:px-2 cursor-pointer hover:bg-gray-50 rounded-md mr-3"
+                  onClick={() => setBreed(breed)}
                 >
-                  <Link href={`/breeds/${id}`}>
-                    <a>{name}</a>
-                  </Link>
+                  {breed.name}
                 </li>
               ))
             ) : (
               <li className="px-1 md:px-2 text-center">
-                {isLoading ? 'Loading...' : 'No breeds found :('}
+                {isLoading ? 'Loading...' : 'No breeds found 😿'}
               </li>
             )}
           </ul>

@@ -12,6 +12,7 @@ export interface Breed {
   natural?: number;
   rare?: number;
   rex?: number;
+  reference_image_id?: string;
   suppress_tail?: number;
   short_legs?: number;
   hypoallergenic?: number;
@@ -28,4 +29,11 @@ export interface Breed {
   social_needs?: number;
   stranger_friendly?: number;
   vocalisation?: number;
+}
+
+export interface BreedSearch {
+  id: string;
+  name: string;
+  searches: number;
+  img?: string;
 }
