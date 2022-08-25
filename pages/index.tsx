@@ -1,9 +1,13 @@
-import { Layout } from '@/components/Layout';
 import type { NextPage } from 'next';
-import Head from 'next/head';
+
+import { Homebanner, Layout } from '@/components/index';
 
 const Home: NextPage = () => {
-  return <Layout>{/* <h1 className="text-xl">heading</h1> */}</Layout>;
+  return (
+    <Layout>
+      <Homebanner />
+    </Layout>
+  );
 };
 
 export default Home;
