@@ -2,12 +2,14 @@ import { SearchInput } from './SearchInput';
 
 const imgBgStyles = [
   "bg-[url('/images/hero-image-sm.png')]",
-  "sm:bg-[url('/images/hero-image-md.png')]",
+  "xs:bg-[url('/images/hero-image-md.png')]",
   "lg:bg-[url('/images/hero-image-lg.png')]",
   'min-h-[160px]',
-  'sm:min-h-[250px]',
-  'md:min-h-[400px]',
-  'lg:min-h-[540px]',
+  'xs:min-h-[200px]',
+  'sm:min-h-[300px]',
+  'md:min-h-[420px]',
+  'lg:min-h-[500px]',
+  'xl:min-h-[600px]',
   'rounded-t-[42px]',
   'p-6',
   'sm:p-8',
