@@ -6,14 +6,10 @@ import { BreedSearch } from '@/types/breeds';
 
 const imgStyles = [
   'bg-cover',
-  'h-[130px]',
-  'xs:h-[180px]',
-  'sm:h-[120px]',
-  'md:h-[160px]',
-  'xl:h-[220px]',
-  '2xl:h-[280px]',
   'bg-center',
   'bg-no-repeat',
+  'w-full',
+  'aspect-square',
   'rounded-2xl',
   'xl:rounded-3xl',
   'mb-2',
@@ -45,7 +41,7 @@ export const SearchedBreeds = () => {
               <a className="group" data-testid="searched-breed">
                 <div
                   style={{
-                    backgroundImage: `url(https://cdn2.thecatapi.com/images/${breed.img}.jpg)`,
+                    backgroundImage: `url(${breed.img})`,
                   }}
                   className={imgStyles}
                 />

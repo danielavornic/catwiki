@@ -10,6 +10,12 @@ export const breeds = {
   getSearches: async () => {
     const { data } = await $axiosFirebase.get('/searches.json');
     const dataArray = Object.keys(data).map((key) => ({ id: key, ...data[key] }));
+
+    for (const breed of dataArray) {
+      const img = await breeds.getImageById(breed.img);
+      dataArray[dataArray.indexOf(breed)].img = img.url;
+    }
+
     return dataArray;
   },
 
