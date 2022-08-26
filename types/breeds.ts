@@ -1,6 +1,11 @@
 export interface Breed {
   id: string;
   name: string;
+  description?: string;
+  image?: {
+    url: string;
+  };
+  images?: string[];
   temperament: string;
   life_span: string;
   alt_names: string;
@@ -36,4 +41,5 @@ export interface BreedSearch {
   name: string;
   searches: number;
   img?: string;
+  imgUrl?: string;
 }
