@@ -7,6 +7,11 @@ module.exports = {
       xs: '475px',
       ...defaultTheme.screens,
     },
+    extend: {
+      colors: {
+        brown: { 300: '#544439', 500: '#291507' },
+      },
+    },
   },
   plugins: [require('tailwind-scrollbar')],
   variants: {

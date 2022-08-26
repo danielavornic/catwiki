@@ -43,7 +43,7 @@ const ChartProperty = ({ title, level, mb = true }: ChartPropertyProps) => (
           key={i}
           className={classNames('w-[24px] md:w-[48px] h-[8px] mr-2 rounded', {
             'bg-stone-200': Number(level) <= i,
-            'bg-amber-900': Number(level) > i,
+            'bg-brown-300': Number(level) > i,
           })}
         ></div>
       ))}
@@ -63,7 +63,7 @@ const Breed = ({ breed }: { breed: Breed }) => (
           />
         </div>
         <div className="mt-12 lg:mt-0">
-          <h1 className="text-2xl md:text-3xl xl:text-4xl text-amber-900 mb-4">{breed.name}</h1>
+          <h1 className="text-2xl md:text-3xl xl:text-4xl text-brown-500 mb-4">{breed.name}</h1>
           <p className="mb-10 lg:text-lg">{breed.description}</p>
 
           <TextProperty title="Temperament" content={breed.temperament} />
@@ -82,7 +82,7 @@ const Breed = ({ breed }: { breed: Breed }) => (
     </section>
 
     <section className={classNames(sectionStyles, 'mt-16')}>
-      <h1 className="text-xl md:text-2xl xl:text-3xl text-amber-900 mb-4">Other photos</h1>
+      <h1 className="text-xl md:text-2xl xl:text-3xl text-brown-500 mb-4">Other photos</h1>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {breed?.images &&
           breed.images.map((url, index) => (
