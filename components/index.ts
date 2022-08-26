@@ -4,3 +4,4 @@ export * from './Layout';
 export * from './Homebanner';
 export * from './SearchInput';
 export * from './SearchedBreeds';
+export * from './ArticlePreview';

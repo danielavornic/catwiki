@@ -1,23 +1,19 @@
-import type { GetServerSideProps, NextPage } from 'next';
+import { ArticlePreview, Homebanner, Layout } from '@/components/index';
+import classNames from 'classnames';
 
-import { Homebanner, Layout } from '@/components/index';
-import { breeds } from './api/breeds';
+const sectionStyles = 'container mx-auto px-4 md:px-2';
 
 const Home = () => {
   return (
     <Layout>
-      <Homebanner />
+      <section className={sectionStyles}>
+        <Homebanner />
+      </section>
+      <section className={classNames(sectionStyles, 'mt-14 lg:mt-20 xl:mt-24')}>
+        <ArticlePreview />
+      </section>
     </Layout>
   );
 };
-
-// Home.getInitialProps = async (context) => {
-//   const query = context.query.searchBreeds;
-//   const breedsList = await breeds.search(query as string);
-
-//   return {
-//     props: { breedsList },
-//   };
-// };
 
 export default Home;

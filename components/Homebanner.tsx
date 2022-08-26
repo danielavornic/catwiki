@@ -40,20 +40,15 @@ const textStyles = [
   'lg:mb-10',
 ].join(' ');
 
-export const Homebanner = () => {
-  return (
-    <div className="container mx-auto px-4 md:px-2">
-      <div className={imgBgStyles}>
-        <div>
-          <img
-            src="/images/catwiki-logo-white.svg"
-            className="w-[100px] sm:w-[200px] lg:w-[300px]"
-          />
-          <h1 className={textStyles}>Get to know more about your cat breed</h1>
-          <SearchInput />
-        </div>
+export const Homebanner = () => (
+  <>
+    <div className={imgBgStyles}>
+      <div>
+        <img src="/images/catwiki-logo-white.svg" className="w-[100px] sm:w-[200px] lg:w-[300px]" />
+        <h1 className={textStyles}>Get to know more about your cat breed</h1>
+        <SearchInput />
       </div>
-      <SearchedBreeds />
     </div>
-  );
-};
+    <SearchedBreeds />
+  </>
+);
