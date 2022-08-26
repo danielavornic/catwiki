@@ -35,11 +35,14 @@ export const SearchedBreeds = () => {
       <h2 className="mt-8 lg:mt-12 text-xl md:text-2xl lg:text-3xl xl:text-4xl text-amber-900 mb-6 lg:mb-8">
         66+ breeds for you to discover
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 md:gap-6 lg:gap-8 xl:gap-12">
+      <div
+        className="grid grid-cols-2 sm:grid-cols-4 gap-5 md:gap-6 lg:gap-8 xl:gap-12"
+        data-testid="breeds-grid"
+      >
         {data?.length &&
           formatData(data).map((breed: BreedSearch) => (
             <Link href={`/breeds/${breed.id}`} key={breed.id}>
-              <a className="group">
+              <a className="group" data-testid="searched-breed">
                 <div
                   style={{
                     backgroundImage: `url(https://cdn2.thecatapi.com/images/${breed.img}.jpg)`,
