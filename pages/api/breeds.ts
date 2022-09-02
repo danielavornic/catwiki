@@ -27,7 +27,7 @@ export const breeds = {
   },
 
   list: async () => {
-    const { data } = await $axiosCat.get('/breeds');
+    const { data } = await $axiosCat.get('/breeds?limit=50');
     return data;
   },
 
